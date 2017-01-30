@@ -1,5 +1,7 @@
 # Interactor::Schema
 
+[![Build Status](https://img.shields.io/travis/berfarah/interactor-schema/master.svg?style=flat-square)](https://travis-ci.org/berfarah/interactor-schema)
+
 Interactor::Schema provides an enforcable Interactor Context via a `schema`
 class method.
 
