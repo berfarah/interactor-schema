@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Bernardo Farah"]
   spec.email         = ["ber@bernardo.me"]
 
-  spec.summary       = "Enforce a schema with interactors"
-  spec.description   = "Enforce a schema with interactors"
+  spec.summary       = "Enforce a schema with for Interactor Context"
+  spec.description   = "Interactor::Schema provides an enforcable Interactor Context"
   spec.homepage      = "https://github.com/berfarah/interactor-schema"
   spec.license       = "MIT"
 
