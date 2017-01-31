@@ -1,6 +1,7 @@
 require "interactor"
 require "interactor/schema/context"
 require "interactor/schema/context_extension"
+require "interactor/schema/interactor_extension"
 require "interactor/schema/version"
 
 module Interactor

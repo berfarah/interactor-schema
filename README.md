@@ -60,7 +60,7 @@ context.age
 # NoMethodError: undefined method 'age' for #<SaveUser:0x007f9521298b10>
 ```
 
-### Use with `Organizer`s
+### Use with Organizers
 
 `Interactor::Schema` works great with `Interactor::Organizer`s!
 
@@ -101,6 +101,57 @@ run an `Interactor` chain what information will be set.
 
 Modifying the schema in the middle of the chain could result in confusing
 behavior.
+
+
+### Interactor Helper Methods
+
+This gem comes with two helper methods - one that should help enforce context
+cleanliness and one to delegate to the context.
+
+#### require_in_context
+
+`Interactor::require_in_context` ensures that the attributes provided as
+arguments are present and not `nil?` when the service is called.
+
+```rb
+class SaveUser
+  include Interactor
+  require_in_context :name
+end
+```
+
+This will fail:
+
+```rb
+SaveUser.call
+# => ArgumentError: Missing the following attributes in context: name
+```
+
+Whereas this will work:
+
+```rb
+SaveUser.call(name: "Bob")
+# => #<Interactor::Context:0x007f9521298b10>
+```
+
+#### delegate_to_context
+
+`Interactor::delegate_to_context` creates a method that delegates to the
+context.
+
+```rb
+class SaveUser
+  include Interactor
+
+  delegate_to_context :name
+
+  # is equivalent to:
+
+  def name
+    context.name
+  end
+end
+```
 
 ## Development
 
