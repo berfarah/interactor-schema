@@ -5,9 +5,14 @@
 Interactor::Schema provides an enforcable Interactor Context via a `schema`
 class method.
 
+This gem was born out of frustration. In using Interactor, I often wouldn't know
+what methods would be defined on it. By forcing a schema upfront, and also
+requiring methods in Interactor classes, we bring order to
+`Interactor::Context`.
+
 ## Installation
 
-Add this line to your application's Gemfile:
+Put this in your application's Gemfile:
 
 ```ruby
 gem 'interactor'
@@ -52,7 +57,7 @@ context.name
 ```
 
 For attributes outside the schema, you will get `NoMethodError`s. The same thing
-applies when trying to set an attribtue outside of the schema.
+applies when trying to set an attribute outside of the schema.
 
 ```rb
 context = SaveUser.call(age: 28)
@@ -96,8 +101,8 @@ maintaining clarity of what information is being consumed by a chain of
 ### Multiple Schemas
 
 In the case of multiple schemas being provided only the first one will be used
-(others will be discarded). The idea is that you should have clarity before you
-run an `Interactor` chain what information will be set.
+(others will be discarded). The idea is that you should know upfront what
+attributes will be needed.
 
 Modifying the schema in the middle of the chain could result in confusing
 behavior.
@@ -161,7 +166,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/interactor-schema.
+Bug reports and pull requests are welcome on GitHub at https://github.com/berfarah/interactor-schema.
 
 
 ## License
