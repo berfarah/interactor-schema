@@ -16,7 +16,7 @@ describe Interactor do
     end
 
     it "succeeds if the argument is passed in" do
-      expect { interactor.call(foo: "bar") }.not_to raise_error(ArgumentError)
+      expect { interactor.call(foo: "bar") }.not_to raise_error
     end
   end
 
