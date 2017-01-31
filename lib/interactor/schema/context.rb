@@ -7,10 +7,8 @@ module Interactor
         end
       end
 
-      attr_reader :table
-      alias_method :to_h, :table
-
       def initialize(schema = [])
+        @schema = schema
         @table = {}
         define_schema_methods(schema)
       end
@@ -20,7 +18,8 @@ module Interactor
       end
 
       def assign(context)
-        @table.merge!(context)
+        filtered_context = context.select { |k, _| _schema.include?(k) }
+        @table.merge!(filtered_context)
       end
 
       def success?
@@ -51,7 +50,17 @@ module Interactor
         @called ||= []
       end
 
+      def _schema
+        @schema
+      end
+
+      def to_h
+        @table
+      end
+
       private
+
+      attr_reader :table
 
       def define_schema_methods(schema)
         singleton_class.class_exec(schema) do |names|

@@ -23,6 +23,27 @@ module Interactor::Schema
       end
     end
 
+    describe "#_schema" do
+      let(:context) { Context.build({}, schema) }
+      let(:schema) { [:foo] }
+
+      it "is empty by default" do
+        context = Context.build
+        expect(context._schema).to eq([])
+      end
+
+      it "holds onto the schema" do
+        expect(context._schema).to eq(schema)
+      end
+    end
+
+    describe "#to_h" do
+      let(:context) { Context.build({ foo: "one", bar: "two" }, [:foo]) }
+      it "only records allowed values" do
+        expect(context.to_h).to eq(foo: "one")
+      end
+    end
+
     # NOTE:
     # The tests below are copied from the original Interactor::Context
     # The only thing modified was to add the context argument where needed.
