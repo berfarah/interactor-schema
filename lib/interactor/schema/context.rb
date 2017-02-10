@@ -18,7 +18,7 @@ module Interactor
       end
 
       def assign(context)
-        filtered_context = context.select { |k, _| _schema.include?(k) }
+        filtered_context = context.to_h.select { |k, _| _schema.include?(k) }
         @table.merge!(filtered_context)
       end
 
